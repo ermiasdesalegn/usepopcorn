@@ -78,6 +78,7 @@ function Logo() {
 }
 function Search() {
   const [query, setQuery] = useState("");
+
   return (
     <input
       className="search"
@@ -92,6 +93,7 @@ function Result() {
   return (
     <p className="num-results">
       Found <strong>x</strong> results
+      <p> trial thing</p>
     </p>
   );
 }

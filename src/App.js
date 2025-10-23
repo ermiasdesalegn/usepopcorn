@@ -1,5 +1,7 @@
 import { useState } from "react";
 
+
+
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -50,9 +52,17 @@ const tempWatchedData = [
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
+const key ='fdb488f5'
+
 export default function App() {
+
+
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
+
+  fetch(`http://www.omdbapi.com/?apikey=${key}&s=inception`).then(res=>res.json().then(data=>console.log(data)))
+  .catch(err=>console.error(err));
+
   return (
     <>
       <NavBar>
@@ -105,7 +115,7 @@ function Result({ movies }) {
   return (
     <p className="num-results">
       Found <strong>{movies.length}</strong> results
-      <p> trial thing</p>
+      <span> trial thing</span>
     </p>
   );
 }

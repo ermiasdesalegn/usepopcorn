@@ -60,7 +60,7 @@ export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
 
-  const query = 'interstellar'
+  const query = 'fdsfreqg'
   const [isLoading, setLoading] = useState(false)
   const [error, setError] = useState('')
   

@@ -60,8 +60,12 @@ export default function App() {
   const [movies, setMovies] = useState(tempMovieData);
   const [watched, setWatched] = useState(tempWatchedData);
 
-  useEffect(function (){fetch(`http://www.omdbapi.com/?apikey=${key}&s=inception`).then(res=>res.json().then(data=>setMovies(data.Search)))
-  .catch(err=>console.error(err))},[]);
+  useEffect( function(){async function fetchMovies(){const res =await fetch(`http://www.omdbapi.com/?apikey=${key}&s=inception`)
+  const data = await res.json()
+  setMovies(data.Search)
+  console.log(data.Search)
+  
+  fetchMovies() },[]);
 
   return (
     <>

@@ -67,7 +67,8 @@ export default function App() {
   useEffect( function(){
     async function fetchMovies(){
      try{ setLoading(true);
-      const res = await fetch(`http://www.omdbapi.com/?apikey=${key}&s=${tempQuery}`)
+      setError('')
+      const res = await fetch(`http://www.omdbapi.com/?apikey=${key}&s=${query}`)
 
       if (!res.ok) throw new Error('Something went wrong with fetching movies')
       const data = await res.json()
@@ -79,8 +80,14 @@ export default function App() {
       setError(err.message)
     } finally{setLoading(false)}
   }
+
+  if (query.length < 3){
+    setMovies([])
+    setError('')
+    return
+  }
     fetchMovies() 
-  },[] );
+  },[query] );
   return (
     <>
       <NavBar>
@@ -129,7 +136,7 @@ function Logo() {
     </div>
   );
 }
-function Search(query, setQuery) {
+function Search({ query, setQuery }) {
 
   return (
     <input

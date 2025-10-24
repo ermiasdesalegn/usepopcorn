@@ -62,7 +62,7 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
 
   const [isLoading, setLoading] = useState(false)
-  const [error, setError] = useState('')('')
+  const [error, setError] = useState('')
   const tempQuery = 'interstellar'
   useEffect( function(){
     async function fetchMovies(){

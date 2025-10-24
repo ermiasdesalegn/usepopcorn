@@ -99,6 +99,10 @@ export default function App() {
   );
 }
 
+function ErrorMessage({ message }) {
+  return <p className="error"><span>❓</span>{message}</p>;
+}
+
 function Loader() {
   return <p className="loader">Loading...</p>;
 }

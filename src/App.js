@@ -59,7 +59,7 @@ export default function App() {
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
   const tempQuery = "interstellar";
   useEffect(
     function () {
@@ -107,8 +107,14 @@ export default function App() {
           {!isLoading && !error && <MovieList movies={movies} />}
         </Box>
         <Box>
-          <WatchSummary watched={watched} />
-          <WatchedMovieList watched={watched} />
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <>
+              <WatchSummary watched={watched} />
+              <WatchedMovieList watched={watched} />
+            </>
+          )}
         </Box>
       </Main>
     </>
@@ -235,6 +241,10 @@ function WatchedMovie({ movie }) {
       </div>
     </li>
   );
+}
+
+function MovieDetails({ selectedId }) {
+  return <div className="details"> {selectedId}</div>;
 }
 
 function WatchSummary({ watched }) {

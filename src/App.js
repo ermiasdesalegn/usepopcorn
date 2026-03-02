@@ -359,7 +359,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   useEffect(
     function () {
       function callback(e) {
-        if (e.code === "Escape") {
+        if (e.code === "Backspace") {
           onCloseMovie();
           console.log("closing");
         }

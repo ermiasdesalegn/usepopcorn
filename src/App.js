@@ -55,12 +55,16 @@ const key = "fdb488f5";
 export default function App() {
   const [query, setQuery] = useState("");
   const [movies, setMovies] = useState(tempMovieData);
-  const [watched, setWatched] = useState([]);
 
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [selectedId, setSelectedId] = useState(null);
   // const tempQuery = "interstellar";
+  // const [watched, setWatched] = useState([]);
+  const [watched, setWatched] = useState(function () {
+    const storedWatched = localStorage.getItem("watched");
+    return JSON.parse(storedWatched);
+  });
 
   function handleSelection(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -76,6 +80,13 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched(watched.filter((movie) => movie.imdbID !== id));
   }
+
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched],
+  );
 
   useEffect(
     function () {
@@ -335,13 +346,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
     Genre: genre,
   } = movie;
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
-
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched],
-  );
 
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId,

@@ -336,6 +336,13 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   } = movie;
   const isWatched = watched.map((movie) => movie.imdbID).includes(selectedId);
 
+  useEffect(
+    function () {
+      localStorage.setItem("watched", JSON.stringify(watched));
+    },
+    [watched],
+  );
+
   const watchedUserRating = watched.find(
     (movie) => movie.imdbID === selectedId,
   )?.userRating;

@@ -337,6 +337,14 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
   const [movie, setMovie] = useState({});
   const [userRating, setUserRating] = useState("");
 
+  const countRef = useRef(0);
+  useEffect(
+    function () {
+      if (userRating) countRef.current++;
+    },
+    [userRating],
+  );
+
   function handleAdd() {
     const newWatchedMovie = {
       imdbID: selectedId,
@@ -346,6 +354,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
       imdbRating: Number(imdbRating),
       runtime: Number(runtime.split(" ").at(0)),
       userRating,
+      countRatingDecision: countRef.current,
     };
 
     // if (selectedId in watched) return;

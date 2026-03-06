@@ -53,7 +53,7 @@ const average = (arr) =>
 
 export default function App() {
   const [query, setQuery] = useState("");
-  const { movies, isLoading, error } = useMovies(query, handleClose);
+  const { movies, isLoading, error } = useMovies(query);
 
   const [selectedId, setSelectedId] = useState(null);
   // const tempQuery = "interstellar";

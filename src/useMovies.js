@@ -1,4 +1,5 @@
 export function useMovie() {
+  import { useState } from "react";
   const [movies, setMovies] = useState(tempMovieData);
 
   const [isLoading, setLoading] = useState(false);

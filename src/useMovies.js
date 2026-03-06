@@ -1,13 +1,15 @@
+import { useEffect, useState } from "react";
 export function useMovie() {
-  import { useState } from "react";
-  const [movies, setMovies] = useState(tempMovieData);
-
+  const [movies, setMovies] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  const key = "fdb488f5";
+
   useEffect(
     function () {
       const controller = new AbortController();
-      async function fetchMovies() {
+      async function fetchMovies(query) {
         try {
           setLoading(true);
           setError("");
@@ -43,4 +45,5 @@ export function useMovie() {
     },
     [query],
   );
+  return { movies, error, isLoading };
 }

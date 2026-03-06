@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-export function useMovie() {
+export function useMovie(query) {
   const [movies, setMovies] = useState("");
   const [isLoading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -9,7 +9,7 @@ export function useMovie() {
   useEffect(
     function () {
       const controller = new AbortController();
-      async function fetchMovies(query) {
+      async function fetchMovies() {
         try {
           setLoading(true);
           setError("");

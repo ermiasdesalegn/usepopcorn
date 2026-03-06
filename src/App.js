@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import StarRating from "./StarRating";
+import { useMovies } from "./useMovies";
 const tempMovieData = [
   {
     imdbID: "tt1375666",
@@ -46,12 +47,13 @@ const tempWatchedData = [
     userRating: 9,
   },
 ];
-
+const key = "fdb488f5";
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
 export default function App() {
   const [query, setQuery] = useState("");
+  const { movies, isLoading, error } = useMovies(query);
 
   const [selectedId, setSelectedId] = useState(null);
   // const tempQuery = "interstellar";

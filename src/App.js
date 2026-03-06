@@ -56,7 +56,7 @@ export default function App() {
   const { movies, isLoading, error } = useMovies(query);
 
   const [selectedId, setSelectedId] = useState(null);
-  // const tempQuery = "interstellar";
+
   // const [watched, setWatched] = useState([]);
   const [watched, setWatched] = useState(function () {
     const storedWatched = localStorage.getItem("watched");

@@ -58,12 +58,7 @@ export default function App() {
 
   const [selectedId, setSelectedId] = useState(null);
 
-  const [watched, setWatched] = useLocalStorageState([]);
-  // const [watched, setWatched] = useState([]);
-  // const [watched, setWatched] = useState(function () {
-  //   const storedWatched = localStorage.getItem("watched");
-  //   return JSON.parse(storedWatched);
-  // });
+  const [watched, setWatched] = useLocalStorageState([], "watched");
 
   function handleSelection(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -79,13 +74,6 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched(watched.filter((movie) => movie.imdbID !== id));
   }
-
-  useEffect(
-    function () {
-      localStorage.setItem("watched", JSON.stringify(watched));
-    },
-    [watched],
-  );
 
   useEffect(function () {
     async function fetchMovie() {
